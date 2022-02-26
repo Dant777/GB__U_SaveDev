@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer", "Abstrac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLogicLayer", "BussinesLogicLayer\BussinesLogicLayer.csproj", "{EA905C42-F706-4F92-9F81-DEC7671E9347}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B0F56D63-2D47-47F1-B47A-F3A669C7F4C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{BDB40FAC-0424-4695-884B-4AB4A3943C82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +43,16 @@ Global
 		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB40FAC-0424-4695-884B-4AB4A3943C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB40FAC-0424-4695-884B-4AB4A3943C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB40FAC-0424-4695-884B-4AB4A3943C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB40FAC-0424-4695-884B-4AB4A3943C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BDB40FAC-0424-4695-884B-4AB4A3943C82} = {B0F56D63-2D47-47F1-B47A-F3A669C7F4C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F6CD570-330E-41E9-9DA9-F6CB8AE4C543}
