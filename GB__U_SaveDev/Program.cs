@@ -1,3 +1,5 @@
+using AbstractionLayer;
+using BusinessLogicLayer;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,9 @@ builder.Services.AddDbContext<AppDataContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.RegisterAbstractLayer();
+builder.Services.RegisterBusinessLogic();
 
 #endregion
 

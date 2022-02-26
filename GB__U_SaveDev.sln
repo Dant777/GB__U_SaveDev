@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer", "AbstractionLayer\AbstractionLayer.csproj", "{568A8BE3-E6B2-4E3B-A235-F4E2AD44F8D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLogicLayer", "BussinesLogicLayer\BussinesLogicLayer.csproj", "{EA905C42-F706-4F92-9F81-DEC7671E9347}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BussinesLogicLayer\BusinessLogicLayer.csproj", "{EA905C42-F706-4F92-9F81-DEC7671E9347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
