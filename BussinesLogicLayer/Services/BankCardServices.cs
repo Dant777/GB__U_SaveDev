@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AbstractionLayer.Repository.Interfaces;
 using BusinessLogicLayer.Services.Interfaces;
 using DataLayer.Entities;
 
@@ -10,34 +11,41 @@ namespace BusinessLogicLayer.Services
 {
     public sealed class BankCardServices : IBankCardServices
     {
-        public Task<int> Create(BankCard item)
+        private readonly IBankCardRepository _repository;
+
+        public BankCardServices(IBankCardRepository repository)
         {
-            throw new NotImplementedException();
+            _repository = repository;
         }
 
-        public Task<IList<BankCard>> GetAll()
+        public async Task<int> Create(BankCard item)
         {
-            throw new NotImplementedException();
+            return await _repository.Create(item);
         }
 
-        public Task<BankCard> GetById(int id)
+        public async Task<IList<BankCard>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAll();
         }
 
-        public Task<BankCard> GetByName(string name)
+        public async Task<BankCard> GetById(int id)
         {
-            throw new NotImplementedException();
+            return  await _repository.GetById(id);
         }
 
-        public Task<int> Update(BankCard item)
+        public async Task<BankCard> GetByName(string name)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByName(name);
         }
 
-        public Task<int> Delete(int id)
+        public async Task<int> Update(BankCard item)
         {
-            throw new NotImplementedException();
+            return await _repository.Update(item);
+        }
+
+        public async Task<int> Delete(int id)
+        {
+            return await _repository.Delete(id);
         }
     }
 }

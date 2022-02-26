@@ -36,7 +36,7 @@ namespace AbstractionLayer.Repository
             var bankCard = await _db.BankCards.FirstOrDefaultAsync(p => p.Id == id);
             if (bankCard == null)
             {
-                throw new ArgumentNullException($"Bank card {id} not found");
+                throw new ArgumentNullException($"{id} not found");
             }
 
             return bankCard;
@@ -47,7 +47,7 @@ namespace AbstractionLayer.Repository
             var bankCard = await _db.BankCards.FirstOrDefaultAsync(p => p.UserName == name);
             if (bankCard == null)
             {
-                throw new ArgumentNullException($"Bank card name = {name} not found");
+                throw new ArgumentNullException($"{name} not found");
             }
 
             return bankCard;
@@ -57,7 +57,7 @@ namespace AbstractionLayer.Repository
         {
             if (!await _db.BankCards.AnyAsync(p => p.Id == item.Id))
             {
-                throw new Exception("ID not found");
+                throw new Exception($"Not found");
             }
             _db.BankCards.Update(item);
             return await _db.SaveChangesAsync();
