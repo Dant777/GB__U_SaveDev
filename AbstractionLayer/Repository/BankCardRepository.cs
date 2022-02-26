@@ -4,41 +4,74 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AbstractionLayer.Repository.Interfaces;
+using DataLayer;
 using DataLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AbstractionLayer.Repository
 {
     public class BankCardRepository : IBankCardRepository
     {
-        //private readonly App
-        public Task<int> Create(BankCard item)
+        private readonly AppDataContext _db;
+
+        public BankCardRepository(AppDataContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
+        }
+        public async Task<int> Create(BankCard item)
+        {
+            await _db.AddAsync(item);
+            await _db.SaveChangesAsync();
+            var person = await _db.BankCards.ToListAsync();
+            return person[^1].Id;
         }
 
-        public Task<IList<BankCard>> GetAll()
+        public async Task<IList<BankCard>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _db.BankCards.ToArrayAsync();
         }
 
-        public Task<BankCard> GetById(int id)
+        public async Task<BankCard> GetById(int id)
         {
-            throw new NotImplementedException();
+            var bankCard = await _db.BankCards.FirstOrDefaultAsync(p => p.Id == id);
+            if (bankCard == null)
+            {
+                throw new ArgumentNullException($"Bank card {id} not found");
+            }
+
+            return bankCard;
         }
 
-        public Task<BankCard> GetByName(string name)
+        public async Task<BankCard> GetByName(string name)
         {
-            throw new NotImplementedException();
+            var bankCard = await _db.BankCards.FirstOrDefaultAsync(p => p.UserName == name);
+            if (bankCard == null)
+            {
+                throw new ArgumentNullException($"Bank card name = {name} not found");
+            }
+
+            return bankCard;
         }
 
-        public Task<int> Update(BankCard item)
+        public async Task<int> Update(BankCard item)
         {
-            throw new NotImplementedException();
+            if (!await _db.BankCards.AnyAsync(p => p.Id == item.Id))
+            {
+                throw new Exception("ID not found");
+            }
+            _db.BankCards.Update(item);
+            return await _db.SaveChangesAsync();
         }
 
-        public Task<int> Delete(int id)
+        public async Task<int> Delete(int id)
         {
-            throw new NotImplementedException();
+            var person = await _db.BankCards.FirstOrDefaultAsync(p => p.Id == id);
+            if (person == null)
+            {
+                throw new Exception("ID not found");
+            }
+            _db.BankCards.Remove(person);
+            return await _db.SaveChangesAsync();
         }
     }
 }
