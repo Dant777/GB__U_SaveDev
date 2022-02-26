@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AbstractionLayer.Entities;
 using AbstractionLayer.Repository.Interfaces;
+using DataLayer.Entities;
 
 namespace AbstractionLayer.Repository
 {
     public class BankCardRepository : IBankCardRepository
     {
+        //private readonly App
         public Task<int> Create(BankCard item)
         {
             throw new NotImplementedException();
