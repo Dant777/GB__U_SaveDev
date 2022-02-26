@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AbstractionLayer.Entities;
 
 namespace BusinessLogicLayer.Services.Interfaces
 {
-    internal interface IBankCardServices
+    public interface IBankCardServices:IService<BankCard>
     {
     }
 }
