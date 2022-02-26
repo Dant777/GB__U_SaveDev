@@ -11,7 +11,7 @@ namespace AbstractionLayer
     {
         public static IServiceCollection RegisterAbstractLayer(this IServiceCollection services)
         {
-            
+            //services.AddTransient<I>()
             return services;
         }
 
