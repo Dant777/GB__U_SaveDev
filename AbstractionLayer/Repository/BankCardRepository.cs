@@ -1,6 +1,6 @@
 ﻿using AbstractionLayer.Repository.Interfaces;
 using DataLayer;
-using Domain.Entities;
+using Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AbstractionLayer.Repository

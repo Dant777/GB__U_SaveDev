@@ -1,6 +1,6 @@
 ﻿using AbstractionLayer.RequestEntities;
 using BusinessLogicLayer.Services.Interfaces;
-using DataLayer.Entities;
+using Domain.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GB__U_SaveDev.Controllers
@@ -64,7 +64,7 @@ namespace GB__U_SaveDev.Controllers
                 Id = id,
                 UserName = request.UserName,
                 CardNumber = request.CardNumber,
-                
+
             };
             int status = await _services.Update(bankCard);
 

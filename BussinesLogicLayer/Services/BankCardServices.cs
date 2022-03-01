@@ -1,6 +1,6 @@
 ﻿using AbstractionLayer.Repository.Interfaces;
 using BusinessLogicLayer.Services.Interfaces;
-using Domain.Entities;
+using Domain.Core.Entities;
 
 namespace BusinessLogicLayer.Services
 {

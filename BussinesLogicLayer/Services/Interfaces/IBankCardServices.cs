@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Domain.Core.Entities;
 
 namespace BusinessLogicLayer.Services.Interfaces
 {
