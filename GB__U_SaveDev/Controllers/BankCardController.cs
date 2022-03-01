@@ -1,6 +1,6 @@
-﻿using AbstractionLayer.RequestEntities;
-using BusinessLogicLayer.Services.Interfaces;
+﻿using BusinessLogicLayer.Services.Interfaces;
 using Domain.Core.Entities;
+using Domain.Core.RequestEntities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GB__U_SaveDev.Controllers
@@ -52,7 +52,7 @@ namespace GB__U_SaveDev.Controllers
             return Ok(card);
         }
 
-        [HttpPut("card")]
+        [HttpPut("updateCard")]
         public async Task<IActionResult> Update(int id, BankCardRequest request)
         {
             if (id == null || id == 0)
@@ -71,7 +71,7 @@ namespace GB__U_SaveDev.Controllers
             return Ok(status);
         }
 
-        [HttpDelete("card/{id}")]
+        [HttpDelete("delCard/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (id == null || id == 0)
