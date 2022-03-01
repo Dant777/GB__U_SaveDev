@@ -11,6 +11,6 @@ namespace Domain.Core.Entities.Configuration
     {
         public string Token { get; set; }
         public bool Success { get; set; }
-        public List<string> Erorrs { get; set; }
+        public List<string> Errors { get; set; }
     }
 }
