@@ -1,12 +1,15 @@
 ﻿using BusinessLogicLayer.Services.Interfaces;
 using Domain.Core.Entities;
 using Domain.Core.RequestEntities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GB__U_SaveDev.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BankCardController : ControllerBase
     {
         private readonly IBankCardServices _services;

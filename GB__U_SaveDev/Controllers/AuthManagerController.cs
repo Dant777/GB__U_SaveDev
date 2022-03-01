@@ -78,7 +78,6 @@ namespace GB__U_SaveDev.Controllers
                 Success = false
             });
 
-
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationRequest user)
