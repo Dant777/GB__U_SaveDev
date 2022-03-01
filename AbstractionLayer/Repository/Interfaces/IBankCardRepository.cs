@@ -1,4 +1,4 @@
-﻿using DataLayer.Entities;
+﻿using Domain.Entities;
 
 namespace AbstractionLayer.Repository.Interfaces;
 

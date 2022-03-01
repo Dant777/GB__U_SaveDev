@@ -1,4 +1,4 @@
-﻿namespace DataLayer.Entities
+﻿namespace Domain.Entities
 {
     public class BankCard
     {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AbstractionLayer.Repository.Interfaces;
+﻿using AbstractionLayer.Repository.Interfaces;
 using DataLayer;
-using DataLayer.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AbstractionLayer.Repository

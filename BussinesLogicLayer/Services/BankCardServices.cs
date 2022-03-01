@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AbstractionLayer.Repository.Interfaces;
+﻿using AbstractionLayer.Repository.Interfaces;
 using BusinessLogicLayer.Services.Interfaces;
-using DataLayer.Entities;
+using Domain.Entities;
 
 namespace BusinessLogicLayer.Services
 {
@@ -30,7 +25,7 @@ namespace BusinessLogicLayer.Services
 
         public async Task<BankCard> GetById(int id)
         {
-            return  await _repository.GetById(id);
+            return await _repository.GetById(id);
         }
 
         public async Task<BankCard> GetByName(string name)
