@@ -84,7 +84,7 @@ namespace SignLibrary.Lesson_3
                 var isCreated = await _userManager.CreateAsync(newUser, user.Password);
                 if (isCreated.Succeeded)
                 {
-                    var jwtToken = GenerateJwtToken(newUser);
+                    var jwtToken = GenerateJwtToken.Generate(newUser, _jwtConfig);
                     return new RegistrationResponse()
                     {
                         Success = true,
