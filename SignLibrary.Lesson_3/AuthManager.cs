@@ -49,7 +49,7 @@ namespace SignLibrary.Lesson_3
                 };
             }
 
-            var jwtToken = GenerateJwtToken(existingUser);
+            var jwtToken = GenerateJwtToken.Generate(existingUser, _jwtConfig);
 
             return new RegistrationResponse()
             {
@@ -102,29 +102,6 @@ namespace SignLibrary.Lesson_3
         }
 
 
-        private string GenerateJwtToken(IdentityUser user)
-        {
-            var jwtTokenHandler = new JwtSecurityTokenHandler();
-
-            var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
-
-            var tokenDescriptor = new SecurityTokenDescriptor()
-            {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim("Id", user.Id),
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                }),
-                Expires = DateTime.UtcNow.AddHours(6),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = jwtTokenHandler.CreateToken(tokenDescriptor);
-            var jwtToken = jwtTokenHandler.WriteToken(token);
-
-            return jwtToken;
-        }
+      
     }
 }
