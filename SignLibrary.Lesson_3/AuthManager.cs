@@ -5,17 +5,19 @@ using System.Security.Claims;
 using System.Text;
 using Domain.Core.Entities.Configuration;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SignLibrary.Lesson_3
 {
-    public class AuthManager
+    public class AuthManager : IAuthManager
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtConfig _jwtConfig;
-        public AuthManager()
+        public AuthManager(UserManager<IdentityUser> userManager, JwtConfig jwtConfig)
         {
-
+            _userManager = userManager;
+            _jwtConfig = jwtConfig;
         }
         public async Task<RegistrationResponse> Login(UserLoginRequest user)
         {

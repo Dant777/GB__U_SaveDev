@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using SignLibrary.Lesson_3;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 //DI Layer regist
 builder.Services.RegisterAbstractLayer();
 builder.Services.RegisterBusinessLogic();
+builder.Services.RegisterAuthLogic();
+
 
 #endregion
 

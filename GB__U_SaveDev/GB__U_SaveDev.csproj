@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BussinesLogicLayer\BusinessLogicLayer.csproj" />
+    <ProjectReference Include="..\SignLibrary.Lesson_3\SignLibrary.Lesson_3.csproj" />
   </ItemGroup>
 
 </Project>

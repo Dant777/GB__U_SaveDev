@@ -31,42 +31,9 @@ namespace GB__U_SaveDev.Controllers
         {
             if (ModelState.IsValid)
             {
-                var existingUser = await _userManager.FindByEmailAsync(user.Email);
-
-                if (existingUser == null)
-                {
-                    return BadRequest(new RegistrationResponse()
-                    {
-                        Errors = new List<string>()
-                        {
-                            "Error!!!"
-                        },
-                        Success = false
-                    });
-
-                }
-
-                var isCorrect = await _userManager.CheckPasswordAsync(existingUser, user.Password);
-
-                if (!isCorrect)
-                {
-                    return BadRequest(new RegistrationResponse()
-                    {
-                        Errors = new List<string>()
-                        {
-                            "Error!!!"
-                        },
-                        Success = false
-                    });
-                }
-
-                var jwtToken = GenerateJwtToken(existingUser);
-
-                return Ok(new RegistrationResponse()
-                {
-                    Success = true,
-                    Token = jwtToken
-                });
+                AuthMa
+                var result = 
+                return Ok();
             }
 
             return BadRequest(new RegistrationResponse()
