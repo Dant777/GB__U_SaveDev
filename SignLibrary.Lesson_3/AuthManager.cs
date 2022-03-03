@@ -14,10 +14,10 @@ namespace SignLibrary.Lesson_3
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtConfig _jwtConfig;
-        public AuthManager(UserManager<IdentityUser> userManager, JwtConfig jwtConfig)
+        public AuthManager(UserManager<IdentityUser> userManager, IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             _userManager = userManager;
-            _jwtConfig = jwtConfig;
+            _jwtConfig = optionsMonitor.CurrentValue;
         }
         public async Task<RegistrationResponse> Login(UserLoginRequest user)
         {

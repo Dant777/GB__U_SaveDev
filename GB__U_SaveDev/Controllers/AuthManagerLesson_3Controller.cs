@@ -1,13 +1,7 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Domain.Core.Entities.Configuration;
-using Domain.Core.RequestEntities;
+﻿using Domain.Core.RequestEntities;
 using Domain.Core.ResponseEntities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using SignLibrary.Lesson_3;
 
 namespace GB__U_SaveDev.Controllers
 {
@@ -15,15 +9,11 @@ namespace GB__U_SaveDev.Controllers
     [ApiController]
     public class AuthManagerLesson_3Controller : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly JwtConfig _jwtConfig;
+        private readonly IAuthManager _authManager;
 
-        public AuthManagerLesson_3Controller(
-            UserManager<IdentityUser> userManager,
-            IOptionsMonitor<JwtConfig> optionsMonitor)
+        public AuthManagerLesson_3Controller(IAuthManager authManager)
         {
-            _userManager = userManager;
-            _jwtConfig = optionsMonitor.CurrentValue;
+            _authManager = authManager;
         }
         [HttpPost]
         [Route("login")]
@@ -31,9 +21,8 @@ namespace GB__U_SaveDev.Controllers
         {
             if (ModelState.IsValid)
             {
-                AuthMa
-                var result = 
-                return Ok();
+                var result = await _authManager.Login(user);
+                return Ok(result);
             }
 
             return BadRequest(new RegistrationResponse()
@@ -46,47 +35,14 @@ namespace GB__U_SaveDev.Controllers
             });
 
         }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationRequest user)
         {
             if (ModelState.IsValid)
             {
-                var existingUser = await _userManager.FindByEmailAsync(user.Email);
-                if (existingUser != null)
-                {
-                    return BadRequest(new RegistrationResponse()
-                    {
-                        Errors = new List<string>()
-                        {
-                            "Email already in use"
-
-                        },
-                        Success = false
-
-
-                    });
-                }
-
-                var newUser = new IdentityUser() { Email = user.Email, UserName = user.UserName };
-                var isCreated = await _userManager.CreateAsync(newUser, user.Password);
-                if (isCreated.Succeeded)
-                {
-                    var jwtToken = GenerateJwtToken(newUser);
-                    return Ok(new RegistrationResponse()
-                    {
-                        Success = true,
-                        Token = jwtToken
-                    });
-                }
-                else
-                {
-                    return BadRequest(new RegistrationResponse()
-                    {
-                        Errors = isCreated.Errors.Select(x => x.Description).ToList(),
-                        Success = false
-
-                    });
-                }
+                var result = await _authManager.Register(user);
+                return Ok(result);
             }
 
             return BadRequest(new RegistrationResponse()
@@ -100,32 +56,6 @@ namespace GB__U_SaveDev.Controllers
 
 
             });
-        }
-
-
-        private string GenerateJwtToken(IdentityUser user)
-        {
-            var jwtTokenHandler = new JwtSecurityTokenHandler();
-
-            var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
-
-            var tokenDescriptor = new SecurityTokenDescriptor()
-            {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim("Id", user.Id),
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                }),
-                Expires = DateTime.UtcNow.AddHours(6),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = jwtTokenHandler.CreateToken(tokenDescriptor);
-            var jwtToken = jwtTokenHandler.WriteToken(token);
-
-            return jwtToken;
         }
     }
 }
