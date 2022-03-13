@@ -8,15 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace GB__U_SaveDev.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[ApiController]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BankCardController : ControllerBase
     {
         private readonly IBankCardServices _services;
-
-        public BankCardController(IBankCardServices services)
+        private readonly IConfiguration _configuration;
+        public BankCardController(IBankCardServices services, IConfiguration configuration)
         {
             _services = services;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -43,7 +44,15 @@ namespace GB__U_SaveDev.Controllers
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var card = await _services.GetById(id);
+            if (card == null)
+            {
+                card = new BankCard()
+                {
+                    UserName = _configuration.GetValue<string>("Card:Default:UserName"),
+                    CardNumber = _configuration.GetValue<int>("Card:Default:CardNumber")
+                };
 
+            }
             return Ok(card);
         }
 

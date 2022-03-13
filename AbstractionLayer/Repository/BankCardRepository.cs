@@ -29,11 +29,7 @@ namespace AbstractionLayer.Repository
         public async Task<BankCard> GetById(int id)
         {
             var bankCard = await _db.BankCards.FirstOrDefaultAsync(p => p.Id == id);
-            if (bankCard == null)
-            {
-                throw new ArgumentNullException($"{id} not found");
-            }
-
+            
             return bankCard;
         }
 
