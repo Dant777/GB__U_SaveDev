@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB__U_SaveDev", "GB__U_SaveDev\GB__U_SaveDev.csproj", "{0B2096B3-102B-4585-888E-135D1C4AA9B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GB__U_SaveDev", "GB__U_SaveDev\GB__U_SaveDev.csproj", "{0B2096B3-102B-4585-888E-135D1C4AA9B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Migrations", "Migrations\Migrations.csproj", "{2D6A23C5-0E19-477F-AD92-3F2F24B96035}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5049A59C-27D5-4F79-A3FC-44EA4749EC68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLayer", "AbstractionLayer\AbstractionLayer.csproj", "{568A8BE3-E6B2-4E3B-A235-F4E2AD44F8D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BussinesLogicLayer\BusinessLogicLayer.csproj", "{EA905C42-F706-4F92-9F81-DEC7671E9347}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Core", "Domain.Core\Domain.Core.csproj", "{BDDC4563-ED85-4FD4-93F1-510E9E2B20A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLibrary.Lesson_3", "SignLibrary.Lesson_3\SignLibrary.Lesson_3.csproj", "{C6DCCD66-2F84-44B6-8597-F2D2B05E3332}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +27,30 @@ Global
 		{0B2096B3-102B-4585-888E-135D1C4AA9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2096B3-102B-4585-888E-135D1C4AA9B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B2096B3-102B-4585-888E-135D1C4AA9B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D6A23C5-0E19-477F-AD92-3F2F24B96035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6A23C5-0E19-477F-AD92-3F2F24B96035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6A23C5-0E19-477F-AD92-3F2F24B96035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6A23C5-0E19-477F-AD92-3F2F24B96035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5049A59C-27D5-4F79-A3FC-44EA4749EC68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5049A59C-27D5-4F79-A3FC-44EA4749EC68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5049A59C-27D5-4F79-A3FC-44EA4749EC68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5049A59C-27D5-4F79-A3FC-44EA4749EC68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568A8BE3-E6B2-4E3B-A235-F4E2AD44F8D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568A8BE3-E6B2-4E3B-A235-F4E2AD44F8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568A8BE3-E6B2-4E3B-A235-F4E2AD44F8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568A8BE3-E6B2-4E3B-A235-F4E2AD44F8D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA905C42-F706-4F92-9F81-DEC7671E9347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDDC4563-ED85-4FD4-93F1-510E9E2B20A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDDC4563-ED85-4FD4-93F1-510E9E2B20A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDDC4563-ED85-4FD4-93F1-510E9E2B20A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDDC4563-ED85-4FD4-93F1-510E9E2B20A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6DCCD66-2F84-44B6-8597-F2D2B05E3332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6DCCD66-2F84-44B6-8597-F2D2B05E3332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6DCCD66-2F84-44B6-8597-F2D2B05E3332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6DCCD66-2F84-44B6-8597-F2D2B05E3332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
