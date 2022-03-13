@@ -1,18 +1,16 @@
 ﻿using AbstractionLayer.Repository.Interfaces;
 using BusinessLogicLayer.Services.Interfaces;
 using Domain.Core.Entities;
-using Microsoft.Extensions.Configuration;
 
 namespace BusinessLogicLayer.Services
 {
     public sealed class BankCardServices : IBankCardServices
     {
         private readonly IBankCardRepository _repository;
-        
+
         public BankCardServices(IBankCardRepository repository)
         {
             _repository = repository;
-            
         }
 
         public async Task<int> Create(BankCard item)
@@ -27,8 +25,7 @@ namespace BusinessLogicLayer.Services
 
         public async Task<BankCard> GetById(int id)
         {
-            BankCard bankCard = await _repository.GetById(id);
-           return bankCard;
+            return await _repository.GetById(id);
         }
 
         public async Task<BankCard> GetByName(string name)
