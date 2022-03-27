@@ -1,6 +1,8 @@
 ﻿using BusinessLogicLayer.Services.Interfaces;
 using Domain.Core.Entities;
 using Domain.Core.RequestEntities;
+using FluentValidation.Results;
+using GB__U_SaveDev.Validations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +30,12 @@ namespace GB__U_SaveDev.Controllers
                 UserName = request.UserName,
                 CardNumber = request.CardNumber
             };
+            BankCardValidator bankCardValidator = new BankCardValidator();
+            ValidationResult result = bankCardValidator.Validate(bankCard);
+            if (result.IsValid == false)
+            {
+                return BadRequest(result);
+            }
             int createdId = await _services.Create(bankCard);
             return Ok(createdId);
         }

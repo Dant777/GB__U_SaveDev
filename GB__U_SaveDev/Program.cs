@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using FluentValidation.AspNetCore;
 using SignLibrary.Lesson_3;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region Services
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation(fv =>
+{
+    fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+
+}); 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -24,7 +29,6 @@ builder.Services.AddDbContext<AppDataContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 //JwtConfig Authentication 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
