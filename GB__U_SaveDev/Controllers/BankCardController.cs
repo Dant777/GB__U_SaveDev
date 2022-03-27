@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Services.Interfaces;
+﻿using AutoMapper;
+using BusinessLogicLayer.Services.Interfaces;
 using Domain.Core.Entities;
 using Domain.Core.RequestEntities;
 using FluentValidation.Results;
@@ -16,20 +17,26 @@ namespace GB__U_SaveDev.Controllers
     {
         private readonly IBankCardServices _services;
         private readonly IConfiguration _configuration;
-        public BankCardController(IBankCardServices services, IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public BankCardController(IBankCardServices services, IConfiguration configuration, IMapper mapper)
         {
             _services = services;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] BankCardRequest request)
         {
-            var bankCard = new BankCard()
-            {
-                UserName = request.UserName,
-                CardNumber = request.CardNumber
-            };
+            //var bankCard = new BankCard()
+            //{
+            //    UserName = request.UserName,
+            //    CardNumber = request.CardNumber
+            //};
+
+            var bankCard = _mapper.Map<BankCard>(request);
+
+
             BankCardValidator bankCardValidator = new BankCardValidator();
             ValidationResult result = bankCardValidator.Validate(bankCard);
             if (result.IsValid == false)

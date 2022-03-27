@@ -25,8 +25,7 @@ builder.Services.AddControllers().AddFluentValidation(fv =>
 });
 
 //AutoMapper
-
-builder.Services.AddAutoMapper();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 builder.Services.AddEndpointsApiExplorer();
