@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AutoMapper;
 using FluentValidation.AspNetCore;
+using GB__U_SaveDev.Mapper;
 using SignLibrary.Lesson_3;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +22,12 @@ builder.Services.AddControllers().AddFluentValidation(fv =>
 {
     fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
 
-}); 
+});
+
+//AutoMapper
+
+builder.Services.AddAutoMapper();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
