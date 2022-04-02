@@ -9,6 +9,7 @@ namespace BusinessLogicLayer
         public static IServiceCollection RegisterBusinessLogic(this IServiceCollection services)
         {
             services.AddTransient<IBankCardServices, BankCardServices>();
+            services.AddTransient<IBookServices, BookServices>();
             return services;
         }
     }
