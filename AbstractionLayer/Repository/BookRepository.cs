@@ -18,7 +18,7 @@ namespace AbstractionLayer.Repository
         public async Task<int> Create(Book item)
         {
             await _db.InsertOneAsync(item);
-            return int.Parse(item.Id);
+            return 1;
         }
 
         public async Task<IList<Book>> GetAll()
