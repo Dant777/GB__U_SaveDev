@@ -9,6 +9,7 @@ namespace AbstractionLayer
         public static IServiceCollection RegisterAbstractLayer(this IServiceCollection services)
         {
             services.AddTransient<IBankCardRepository, BankCardRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
             return services;
         }
 
