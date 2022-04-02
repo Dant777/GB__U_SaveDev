@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
+using DataLayer.Mongo;
 using FluentValidation.AspNetCore;
 using GB__U_SaveDev.Mapper;
 using SignLibrary.Lesson_3;
@@ -35,6 +36,8 @@ builder.Services.AddDbContext<AppDataContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.Configure<MongoSettings>(builder.Configuration.GetSection("MongoSettings"));
+
 //JwtConfig Authentication 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
