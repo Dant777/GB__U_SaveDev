@@ -1,7 +1,6 @@
 ﻿using BusinessLogicLayer.Services.Interfaces;
 using Domain.Core.Entities;
 using Domain.Core.RequestEntities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GB__U_SaveDev.Controllers
@@ -29,6 +28,7 @@ namespace GB__U_SaveDev.Controllers
             };
 
             int createdId = await _services.Create(book);
+
             return Ok(createdId);
         }
 
@@ -44,7 +44,7 @@ namespace GB__U_SaveDev.Controllers
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var book = await _services.GetById(id);
-     
+
             return Ok(book);
         }
 

@@ -9,8 +9,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using DataLayer.Mongo;
+using Elasticsearch.Net;
 using FluentValidation.AspNetCore;
 using GB__U_SaveDev.Mapper;
+using Nest;
 using SignLibrary.Lesson_3;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +39,14 @@ builder.Services.AddDbContext<AppDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.Configure<MongoSettings>(builder.Configuration.GetSection("MongoSettings"));
+
+//Elastic
+var pool = new SingleNodeConnectionPool(new Uri("http://localhost:9200/"));
+var setting = new ConnectionSettings(pool)
+    .DefaultIndex("books");
+var client = new ElasticClient(setting);
+builder.Services.AddSingleton(client);
+
 
 //JwtConfig Authentication 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
