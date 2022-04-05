@@ -2,6 +2,7 @@
 using Domain.Core.Entities;
 using Domain.Core.RequestEntities;
 using Microsoft.AspNetCore.Mvc;
+using Nest;
 
 namespace GB__U_SaveDev.Controllers
 {
@@ -10,11 +11,12 @@ namespace GB__U_SaveDev.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBookServices _services;
+        private readonly ElasticClient _client;
 
-
-        public BooksController(IBookServices services)
+        public BooksController(IBookServices services, ElasticClient client)
         {
             _services = services;
+            _client = client;
         }
 
         [HttpPost]
@@ -28,6 +30,8 @@ namespace GB__U_SaveDev.Controllers
             };
 
             int createdId = await _services.Create(book);
+
+            var response = await _client.IndexAsync<Book>(book, x => x.Index("books"));
 
             return Ok(createdId);
         }
@@ -54,6 +58,20 @@ namespace GB__U_SaveDev.Controllers
             var book = await _services.GetByName(searchTerm);
 
             return Ok(book);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string searchTerm)
+        {
+
+            var searchResponse = await _client.SearchAsync<Book>(s => s
+                .Index("books")
+                .Query(q => q.Term(t => t.Title, searchTerm) ||
+                            q.Match(m => m.Field(f => f.Title).Query(searchTerm))));
+         
+            var books = searchResponse.Documents;
+
+            return Ok(books);
         }
 
         [HttpPut("updateBook")]
