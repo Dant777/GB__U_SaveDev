@@ -11,6 +11,7 @@ using AutoMapper;
 using DataLayer.Mongo;
 using Elasticsearch.Net;
 using FluentValidation.AspNetCore;
+using GB__U_SaveDev.Consul;
 using GB__U_SaveDev.Mapper;
 using Nest;
 using SignLibrary.Lesson_3;
@@ -47,7 +48,10 @@ var setting = new ConnectionSettings(pool)
 var client = new ElasticClient(setting);
 builder.Services.AddSingleton(client);
 
-
+//Consul
+builder.Services.AddSingleton<IConsulRegisterService, ConsulRegisterService>();
+builder.Services.Configure<MenuConfiguration>(builder.Configuration.GetSection("Menu"));
+builder.Services.Configure<ConsulConfiguration>(builder.Configuration.GetSection("Consul"));
 //JwtConfig Authentication 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
