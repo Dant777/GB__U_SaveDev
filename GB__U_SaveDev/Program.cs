@@ -8,7 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
+using Consul;
 using DataLayer.Mongo;
+using Domain.Core.Configuration;
 using Elasticsearch.Net;
 using FluentValidation.AspNetCore;
 using GB__U_SaveDev.Consul;
@@ -52,6 +54,13 @@ builder.Services.AddSingleton(client);
 builder.Services.AddSingleton<IConsulRegisterService, ConsulRegisterService>();
 builder.Services.Configure<MenuConfiguration>(builder.Configuration.GetSection("Menu"));
 builder.Services.Configure<ConsulConfiguration>(builder.Configuration.GetSection("Consul"));
+
+var consulAddress = builder.Configuration.GetSection("Consul")["url"];
+
+builder.Services.AddSingleton<IConsulClient, ConsulClient>(
+    p => 
+        new ConsulClient(config => 
+            config.Address = new Uri(consulAddress)));
 //JwtConfig Authentication 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
